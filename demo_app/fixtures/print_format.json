@@ -1,0 +1,29 @@
+[
+ {
+  "absolute_value": 1,
+  "align_labels_right": 0,
+  "css": null,
+  "custom_format": 1,
+  "default_print_language": "en",
+  "disabled": 0,
+  "doc_type": "Quotation",
+  "docstatus": 0,
+  "doctype": "Print Format",
+  "font": "Default",
+  "format_data": null,
+  "html": "<!Doctype html>\n<html>\n    <body>\n        <img width=\"150\" height=\"150\" src=\"{{frappe.db.get_value(\"Company\",doc.company,\"company_logo\")}}\"/>\n        <h3 style=\"font-family: Tahoma, sans-serif;text-align-last: right;\">QUOTATION</h3>\n        <hr style=\"width:100%;text-align:left;margin-left:0;\">\n        <p style=\"font-family: Arial, sans-serif;font-size:15px;\"><b>{{doc.company}}</b></p>\n        <p>{{frappe.db.get_value(\"Company\",doc.company,\"company_description\")}}</p>\n        <p>Email ID:<a style=\"color:blue;\" href=\"mailto:{{frappe.db.get_value(\"Company\",doc.company,\"email\")}}\"> {{frappe.db.get_value(\"Company\",doc.company,\"email\")}}</a></p>\n        <p>Website: <a style=\"color:blue;\" href=\"https://{{frappe.db.get_value(\"Company\",doc.company,\"website\")}}\">{{frappe.db.get_value(\"Company\",doc.company,\"website\")}}</a></p>\n        <hr style=\"width:100%;text-align:left;margin-left:0;\">\n        <p><b>CIN:</b> U29843PN2015PTSDF49</p>\n        <p><b style=\"font-size:12px\">GSTIN / UIN:</b> 27AADCB8710T1ZU</p>\n        <hr style=\"width:100%;text-align:left;margin-left:0;\">\n        <p><b>Customer Name : </b>{{doc.customer_name}}<span style=\"float:right\"><b>Quot No.</b> {{doc.name}}</span></p>\n        <hr style=\"width:100%;text-align:left;margin-left:0;\">\n        <p><b>Customer Address: </b>{{frappe.db.get_value(\"Address\",doc.address,\"address_line1\")}},{{frappe.db.get_value(\"Address\",doc.address,\"city\")}},{{frappe.db.get_value(\"Address\",doc.address,\"pincode\")}},{{frappe.db.get_value(\"Address\",doc.address,\"country\")}}<span style=\"float:right\"><b>Date:</b> {{doc.transaction_date}}</span></p>\n        <hr style=\"width:100%;text-align:left;margin-left:0;\">\n        <p><b>GSTIN: </b>27ABCT2820F1ZT</p>\n        <p><b>Contact:</b>{{doc.customer_name}}</p>\n        <p><b>Mobile No.:</b>{{frappe.db.get_value(\"Address\",doc.address,\"phone\")}}</p>\n        <hr style=\"width:100%;text-align:left;margin-left:0;\">\n        \n        \n        <div class=\"row\">\n            <div class=\"col-md-9\">{{ doc.get_formatted(\"Quotation\") }}</div>\n        </div>\n        <table class=\"table table-bordered\">\n          <tbody>\n            <tr>\n              <th>Sr</th>\n              <th>Product Code/Service Ticket No.e</th>\n              <th>Product Image</th>\n              <th class=\"text-right\">HSN/SAC</th>\n              <th class=\"text-right\">IGST Rate</th>\n              <th class=\"test-rigth\">Description</th>\n              <th class=\"test-rigth\">Qty</th>\n              <th class=\"text-right\">Amount</th>\n            </tr>\n            {%- for row in doc.items -%}\n            <tr>\n              <td style=\"width: 3%;\">{{ row.idx }}</td>\n              <td style=\"width: 20%;\">\n                {{ row.item_name }}\n                {% if row.item_code != row.item_name -%}\n                <br>Item Code: {{ row.item_code}}\n                {%- endif %}\n              </td>\n              <td style=\"width: 37%;\"><img width=\"100\"; height=\"100\"; src=\"{{row.item}}\"/></td>\n              <td style=\"width: 10%; text-align: right;\">264635463</td>\n              <td style=\"width: 15%; text-align: right;\">{{\n                row.get_formatted(\"rate\", doc) }}</td>\n              <td style=\"width: 37%;\">\n                <div style=\"border: 0px;\">{{ row.description}}</div></td>\n              <td style=\"width: 37%;\">\n                <div style=\"border: 0px;\">{{ row.qty}}</div></td>\n              <td style=\"width: 15%; text-align: right;\">{{\n                row.get_formatted(\"amount\", doc) }}</td>\n            </tr>s\n            {%- endfor -%}\n          \n          </tbody>\n        </table>\n        <p style=\"text-align:right;\"><b> Subtotal:</b> {{doc.total}}</p>\n        <p style=\"text-align:right;\"><b> Discount:</b> {{doc.discount_amount}}</p>\n        <p style=\"text-align:right;\"><b> IGST:</b> 18%  0</p>\n        <p style=\"text-align:right;\"><b> Grand Total:</b> {{doc.grand_total}}</p>\n        <p style=\"text-align:right;\"><b> In Word:</b> {{doc.in_words}}</p>\n        \n        <hr style=\"width:100%;text-align:left;margin-left:0;height:2px;\"><br><br>\n        \n        <p style= \"float: left;\"><b>Terms and Conditions:</b></p><br><br><br>\n        <p>{{doc.terms}}</p><br><br><br>\n        <p style=\"float: left;\"><b>Prepared By</b></p><br><br>\n        \n        <p style=\"float: left;\"><b>Sales Head</b><span style=\"float: right;\"><b> Sales Manager</b><br></p>\n        <p style=\"float: left;\">Electronically Authorised By<span style=\"float: right;\">Electronically Authorised By</span></p>\n        \n        \n    </body>\n</html>",
+  "line_breaks": 0,
+  "modified": "2021-05-05 14:40:17.678365",
+  "module": "Selling",
+  "name": "Quotation Print Format",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "print_format_builder": 0,
+  "print_format_type": "Jinja",
+  "raw_commands": null,
+  "raw_printing": 0,
+  "show_section_headings": 0,
+  "standard": "No"
+ }
+]
