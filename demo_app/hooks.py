@@ -135,20 +135,4 @@ app_license = "MIT"
 # 	"document_type", "in", ("Quotation")
 # 	]]
 # 	}]
-fixtures = [
-{
-	"doctype": "Sales Order"
-},
-{
-	"doctype": "Workflow",
-	"filters": [
-	["document_type","in",("Quotation")]
-	]
-},
-{
-	"doctype": "Print Format",
-	"filters": [
-	["name","in",["Quotation Print Format"]]
-	]
-}
-]
+fixtures = ['Property Setter','Custom Field','Print Format','Report','Print Settings','Workflow']
